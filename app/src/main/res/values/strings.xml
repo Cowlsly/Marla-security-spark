@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Security Spark</string>
+    <string name="surprise_me">Surprise Me</string>
+    <string name="copy_tip">Copy Tip</string>
+    <string name="tip_copied">Tip copied to clipboard</string>
+</resources>
