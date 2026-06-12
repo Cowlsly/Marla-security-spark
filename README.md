@@ -4,6 +4,8 @@ A tiny Android app by Cowlsly: press **Surprise Me** and Marla shows a useful se
 
 This is deliberately small. No login. No Firebase. No analytics. No ads. No network permission. The first version is a little lantern, not a castle.
 
+**Now styled consistently** with the rest of the Cowlsly suite (Collaborate app + website): deep dark navy backgrounds, clean modern typography, and Marla’s signature bright pink accent.
+
 ## What the app does
 
 - Shows one main screen.
@@ -43,6 +45,14 @@ MarlaSecuritySpark/
 ├── settings.gradle.kts
 └── README.md
 ```
+
+## Styling (updated for suite consistency)
+
+- Dark navy / black backgrounds (`#0F0F1A`)
+- Marla’s bright pink as primary accent (`#F472B6`)
+- Clean white text on dark surfaces
+- Modern sans-serif font
+- Matches the aesthetic of the Collaborate app and Cowlsly website
 
 ## What each part teaches
 
