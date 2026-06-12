@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.MarlaSecuritySpark" parent="android:style/Theme.Material.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:fontFamily">sans</item>
+    <!-- Consistent dark theme for Marla Security Spark (part of Cowlsly suite) -->
+    <style name="Theme.MarlaSecuritySpark" parent="android:style/Theme.Material3.Dark.NoActionBar">
+        <!-- Dark navy / black background matching website and Collaborate app -->
+        <item name="android:colorBackground">#0F0F1A</item>
+        <item name="android:windowBackground">#0F0F1A</item>
+        
+        <!-- Marla's signature bright pink as primary accent -->
+        <item name="colorPrimary">#F472B6</item>
+        <item name="colorPrimaryVariant">#F472B6</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        
+        <!-- Text and surface colors -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#B0B0C0</item>
+        <item name="colorSurface">#1A1A2E</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        
+        <!-- Status bar and navigation -->
+        <item name="android:statusBarColor">#0F0F1A</item>
+        <item name="android:navigationBarColor">#0F0F1A</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
+        
+        <!-- Font -->
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 </resources>
