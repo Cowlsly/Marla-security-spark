@@ -1,7 +1,6 @@
 # Marla Security Spark – TODO
 
 ## Current Priorities
-
 - [ ] Expand security tip database with categories
 - [ ] Add random fact functionality
 - [ ] Improve UI and animations
@@ -20,3 +19,9 @@
 ---
 
 Keep it simple and focused.
+
+## Completed tasks log (added 2026-06-15)
+- Created missing README.txt with phone-friendly build/run instructions, current state summary, and explanation of CI workflow + zip file. This completes the root documentation set and makes the repo easier to understand and contribute to from a Samsung Galaxy Fold.
+
+## Last checked date
+2026-06-15
