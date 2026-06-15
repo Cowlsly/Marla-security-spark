@@ -1,13 +1,13 @@
-name: Build APK from uploaded ZIP
+name: Build Debug APK
 
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ["main", "feat/complete-one-documented-task"]
 
 jobs:
   build:
-    name: Build Marla Security Spark from ZIP
+    name: Build Marla Security Spark (self-contained from checked-in source)
     runs-on: ubuntu-latest
 
     steps:
@@ -26,24 +26,14 @@ jobs:
       - name: Install Android platform packages
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
 
-      - name: Set up Gradle 9.4.1
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "9.4.1"
 
-      - name: Unzip project
-        run: |
-          rm -rf extracted
-          mkdir extracted
-          unzip -q MarlaSecuritySpark_v2.zip -d extracted
-          test -f extracted/MarlaSecuritySpark/settings.gradle.kts
-
-      - name: Build debug APK
-        working-directory: extracted/MarlaSecuritySpark
-        run: gradle :app:assembleDebug --no-daemon
+      - name: Build debug APK from checked-in source (app/ + Gradle files at root)
+        run: ./gradlew :app:assembleDebug --no-daemon
 
       - name: Upload debug APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: MarlaSecuritySpark-debug-apk
-          path: extracted/MarlaSecuritySpark/app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/*.apk
