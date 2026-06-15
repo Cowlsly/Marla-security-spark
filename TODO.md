@@ -14,7 +14,7 @@
 
 ## Later / Future
 - [ ] Theming options
-- [ ] Integration with other Cowlsly apps
+- [ ] Integration with other Cowlsly apps (unified accounts, profile/avatar sync)
 
 ---
 
@@ -23,6 +23,7 @@ Keep it simple and focused.
 ## Completed tasks log (added 2026-06-15)
 - Created missing README.txt with phone-friendly build/run instructions, current state summary, and explanation of CI workflow + zip file. This completes the root documentation set and makes the repo easier to understand and contribute to from a Samsung Galaxy Fold.
 - **2026-06-15: Completed one documented repo task - Fixed build/config issue in CI workflow (.github/workflows/main.yml). Changed from brittle "unzip MarlaSecuritySpark_v2.zip then build" to standard self-contained Gradle build directly from checked-in `app/` source and root Gradle files. This makes the phone-first GitHub Actions APK download path maintainable without keeping a zip in sync. PR created for review. Non-doc file changed before any doc updates.**
+- **v0.4: Ecosystem spelling, grammar, punctuation fixes applied (including this repo). Version bumped +0.0.3. Unified account sync work in broader Cowlsly ecosystem noted.**
 
 ## Last checked date
-2026-06-15
+2026-06-15 (v0.4)
