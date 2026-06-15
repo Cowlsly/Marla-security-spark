@@ -2,6 +2,8 @@
 
 A simple button that **gives** tips on internet security and sometimes gives random facts!
 
+**Version: v0.4** (+0.0.3 bump)
+
 This is deliberately small. No login. No Firebase. No analytics. No ads. No network permission.
 
 **Now styled consistently** with the rest of the Cowlsly suite (Collaborate app + website).
@@ -25,6 +27,11 @@ These colours match the three-AI colour system used in the Collaborate app and t
 - Lets you copy the current tip.
 - Stores all starter tips locally in Kotlin code.
 - Uses no Android permissions.
+
+## Recent Ecosystem Updates (v0.4)
+- Cross-repo spelling, grammar, and punctuation fixes completed.
+- Unified Cowlsly account system emphasis (username + profile image/avatar sync from website/Account Centre reference to all apps).
+- Asset standardization work referenced in ecosystem docs.
 
 ## Recommended Theming for Compose (`SecuritySparkTheme.kt`)
 
@@ -92,3 +99,7 @@ Good next steps, in order:
 5. Add a daily tip widget.
 
 Keep each upgrade small. Tiny sparks first, grand vault doors later.
+
+---
+
+*Part of the Cowlsly ecosystem — v0.4 updates include ecosystem-wide doc consistency and unified account sync.*
