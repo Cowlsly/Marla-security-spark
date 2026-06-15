@@ -8,10 +8,11 @@ Built with Kotlin.
 
 A lightweight, always-available security awareness tool that makes learning cybersecurity fun and accessible.
 
-## Current Status (June 2026)
+## Current Status (2026-06-15)
 
 - Basic app structure exists
 - Core button functionality in place
+- CI workflow updated to build self-contained from checked-in source (no longer depends on zip)
 
 ## Development Phases
 
