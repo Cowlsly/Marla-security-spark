@@ -1,6 +1,6 @@
 # Security Spark 🔦
 
-A tiny Android app: press **Surprise Me** and get a useful security, privacy, scam-avoidance, Android safety, or technology-learning tip.
+A simple button that **gives** tips on internet security and sometimes gives random facts!
 
 This is deliberately small. No login. No Firebase. No analytics. No ads. No network permission.
 
