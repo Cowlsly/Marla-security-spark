@@ -49,7 +49,6 @@ jobs:
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - retentionDays);
 
-            let page = 1;
             let deleted = 0;
             let bytes = 0;
 
@@ -58,26 +57,25 @@ jobs:
                 owner,
                 repo,
                 per_page: 100,
-                page,
+                page: 1,
               });
 
-              if (data.artifacts.length === 0) break;
+              const batch = (data.artifacts || []).filter((artifact) => {
+                if (deleteAll) return true;
+                return new Date(artifact.created_at) < cutoff;
+              });
 
-              for (const artifact of data.artifacts) {
-                const created = new Date(artifact.created_at);
-                if (deleteAll || created < cutoff) {
-                  await github.rest.actions.deleteArtifact({
-                    owner,
-                    repo,
-                    artifact_id: artifact.id,
-                  });
-                  deleted++;
-                  bytes += artifact.size_in_bytes || 0;
-                }
+              if (batch.length === 0) break;
+
+              for (const artifact of batch) {
+                await github.rest.actions.deleteArtifact({
+                  owner,
+                  repo,
+                  artifact_id: artifact.id,
+                });
+                deleted++;
+                bytes += artifact.size_in_bytes || 0;
               }
-
-              if (data.artifacts.length < 100) break;
-              page++;
             }
 
             core.info(`Deleted ${deleted} artifacts (~${(bytes / 1024 / 1024).toFixed(2)} MiB)`);
@@ -89,7 +87,6 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            let page = 1;
             let deleted = 0;
 
             while (true) {
@@ -97,7 +94,7 @@ jobs:
                 owner,
                 repo,
                 per_page: 100,
-                page,
+                page: 1,
               });
 
               const caches = data.actions_caches || [];
@@ -111,9 +108,6 @@ jobs:
                 });
                 deleted++;
               }
-
-              if (caches.length < 100) break;
-              page++;
             }
 
             core.info(`Deleted ${deleted} caches`);
@@ -125,11 +119,12 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const retentionDays = Number('${{ inputs.artifact_retention_days || '7' }}');
+            const retentionDays = '${{ github.event_name }}' === 'push'
+              ? 0
+              : Number('${{ inputs.artifact_retention_days || '7' }}');
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - retentionDays);
 
-            let page = 1;
             let deleted = 0;
 
             while (true) {
@@ -137,27 +132,24 @@ jobs:
                 owner,
                 repo,
                 per_page: 100,
-                page,
+                page: 1,
               });
 
-              const runs = data.workflow_runs || [];
+              const runs = (data.workflow_runs || []).filter((run) => {
+                if (run.status !== 'completed') return false;
+                return new Date(run.created_at) < cutoff;
+              });
+
               if (runs.length === 0) break;
 
               for (const run of runs) {
-                if (run.status !== 'completed') continue;
-                const created = new Date(run.created_at);
-                if (created < cutoff) {
-                  await github.rest.actions.deleteWorkflowRun({
-                    owner,
-                    repo,
-                    run_id: run.id,
-                  });
-                  deleted++;
-                }
+                await github.rest.actions.deleteWorkflowRun({
+                  owner,
+                  repo,
+                  run_id: run.id,
+                });
+                deleted++;
               }
-
-              if (runs.length < 100) break;
-              page++;
             }
 
             core.info(`Deleted ${deleted} workflow runs`);
