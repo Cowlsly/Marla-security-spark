@@ -1,6 +1,11 @@
 name: Cleanup Actions Storage
+# Runs weekly, on workflow_dispatch, and when this file changes on main.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/cleanup_artifacts.yml
   schedule:
     - cron: '0 4 * * 0'
   workflow_dispatch:
@@ -39,7 +44,7 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const deleteAll = ${{ inputs.delete_all_artifacts || false }};
+            const deleteAll = '${{ github.event_name }}' === 'push' || ${{ inputs.delete_all_artifacts == true }};
             const retentionDays = Number('${{ inputs.artifact_retention_days || '7' }}');
             const cutoff = new Date();
             cutoff.setDate(cutoff.getDate() - retentionDays);
@@ -78,7 +83,7 @@ jobs:
             core.info(`Deleted ${deleted} artifacts (~${(bytes / 1024 / 1024).toFixed(2)} MiB)`);
 
       - name: Delete workflow caches
-        if: ${{ inputs.delete_caches != false }}
+        if: ${{ github.event_name == 'push' || inputs.delete_caches != false }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -114,7 +119,7 @@ jobs:
             core.info(`Deleted ${deleted} caches`);
 
       - name: Delete old workflow runs
-        if: ${{ inputs.delete_old_runs != false }}
+        if: ${{ github.event_name == 'push' || inputs.delete_old_runs != false }}
         uses: actions/github-script@v7
         with:
           script: |
