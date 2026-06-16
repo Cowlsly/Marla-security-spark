@@ -101,12 +101,16 @@ jobs:
               if (caches.length === 0) break;
 
               for (const cache of caches) {
-                await github.rest.actions.deleteActionsCacheById({
-                  owner,
-                  repo,
-                  cache_id: cache.id,
-                });
-                deleted++;
+                try {
+                  await github.rest.actions.deleteActionsCacheById({
+                    owner,
+                    repo,
+                    cache_id: cache.id,
+                  });
+                  deleted++;
+                } catch (error) {
+                  if (error.status !== 404) throw error;
+                }
               }
             }
 
@@ -143,12 +147,16 @@ jobs:
               if (runs.length === 0) break;
 
               for (const run of runs) {
-                await github.rest.actions.deleteWorkflowRun({
-                  owner,
-                  repo,
-                  run_id: run.id,
-                });
-                deleted++;
+                try {
+                  await github.rest.actions.deleteWorkflowRun({
+                    owner,
+                    repo,
+                    run_id: run.id,
+                  });
+                  deleted++;
+                } catch (error) {
+                  if (error.status !== 404) throw error;
+                }
               }
             }
 
