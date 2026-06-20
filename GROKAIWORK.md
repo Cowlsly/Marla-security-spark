@@ -1,41 +1,116 @@
 # GROKAIWORK.md
 
-Read this file before every scheduled work session in `Cowlsly/Marla-security-spark`.
+## Purpose
 
-Work on the default branch unless Shane/Cowy asks otherwise. Make real repo changes, keep them small, and keep work phone-friendly.
+This is the never-ending scheduled work prompt for Grok inside `Cowlsly/Marla-security-spark`.
 
-Before choosing a task, read `TODO.md`, `ROADMAP.md`, `README.md`, `README.txt`, `GROKCHECKLIST.md`, `WHATS_NEEDED.md`, `CLEANUP.md`, and `VOLUME.md` when present.
+Read this file before every scheduled work session. Check what is already complete, choose one safe task, make a real change, record it, then continue next scheduled run.
 
-Do not commit private credentials.
+## Operating mode
+
+Work on the default branch unless Shane/Cowy asks otherwise. Keep work small, safe, phone-friendly, and easy to inspect.
+
+Do not commit private credentials or live provider configuration.
+
+## Required reading
+
+Read these files when present:
+
+- `GROKAIWORK.md`
+- `GROKCHECKLIST.md`
+- `TODO.md`
+- `ROADMAP.md`
+- `README.md`
+- `README.txt`
+- `WHATS_NEEDED.md`
+- `CLEANUP.md`
+- `VOLUME.md`
+- `to-delete/README.md`
 
 ## Work loop
 
 1. Read the docs.
-2. Check `GROKCHECKLIST.md` for work already done.
-3. Choose one safe next task.
-4. Search for assets before editing.
-5. Add missing asset details to `WHATS_NEEDED.md`.
-6. Make the smallest useful change.
-7. Run or trigger checks where practical.
-8. Record only truly completed work in `GROKCHECKLIST.md`.
-9. Update `CLEANUP.md` when used.
+2. Check `GROKCHECKLIST.md`.
+3. Check TODO, roadmap, README files, and source markers.
+4. Choose one safe task.
+5. Search this repo and `cowlsly-web/assets` for needed assets.
+6. Record missing assets in `WHATS_NEEDED.md`.
+7. Make the smallest useful change.
+8. Run or trigger checks where practical.
+9. Record only real completed work in `GROKCHECKLIST.md`.
+10. Use `to-delete/` as the recycle bin for uncertain removals.
 
-## Security Spark priority order
+## Cross-repo tasks that apply here
 
-1. Keep debug APK builds working.
-2. Keep the app small, simple, and privacy-first.
-3. Expand the security tip database.
-4. Add categories and filters.
-5. Add random facts.
-6. Move tips from Kotlin code to a JSON asset if useful.
-7. Add session-only favourites and local history if useful.
-8. Improve UI and animation polish.
-9. Add Simple Settings cog instead of building a duplicate local settings screen.
-10. Add Account Centre link and shared Cowlsly account state if this app is not exempted.
-11. Keep permissions minimal and document any new permission.
-12. Add shared Cowlsly UI assets, pressed states, and sounds.
-13. Maintain `WHATS_NEEDED.md`, `VOLUME.md`, and `GROKCHECKLIST.md`.
+- Keep docs accurate and phone-readable.
+- Keep debug APK builds healthy.
+- Maintain `GROKCHECKLIST.md`, `WHATS_NEEDED.md`, `CLEANUP.md`, `VOLUME.md`, and `to-delete/` rules.
+- Never hard-remove uncertain files; move or list them in `to-delete/`.
+- Search for assets before requesting or creating new ones.
+- Use shared Cowlsly UI assets from `cowlsly-web` where possible.
+- Add Account Centre link and shared account state if this app is not exempted.
+- Add Simple Settings cog once `simple-settings` exists.
+- Do not build a duplicate ordinary settings screen if Simple Settings owns it.
+- Add pressed states, button sounds, and warning sounds where needed.
+- Record missing assets and sounds in the ledgers.
+- Keep legal/about/version/patch notes aligned with the Cowlsly ecosystem where needed.
 
-## Asset rule
+## Security Spark-specific task list
 
-Before requesting any image, icon, button, sound, frame, indicator, or other asset, search this repo and `cowlsly-web/assets`. If it is missing or incomplete, document it in `WHATS_NEEDED.md` with purpose, path, size, style, state needs, sound needs, and blocking status.
+### Build and project health
+
+- Keep APK build green.
+- Fix any failing workflow.
+- Keep the app lightweight and privacy-first.
+- Confirm permissions remain minimal.
+- Document any new permission before adding it.
+- Add phone-friendly install notes.
+- Keep README/TODO/ROADMAP aligned with actual app state.
+
+### Security tips and content
+
+- Expand the security tip database.
+- Add categories.
+- Add filters.
+- Add random facts.
+- Move tips from Kotlin code to a JSON asset if useful.
+- Add search if useful.
+- Add copy current tip action if missing.
+- Add session-only favourites.
+- Add local favourite/history storage if useful.
+- Add optional daily tip widget only if it fits the app.
+- Keep tips clear and non-alarmist.
+
+### UI and interaction
+
+- Improve layout polish.
+- Improve animations.
+- Implement or refine the app theme.
+- Use Cowlsly shared colours.
+- Add empty/loading/error states where needed.
+- Add Account Centre link if the app uses Cowlsly account state.
+- Add Simple Settings cog once available.
+- Avoid duplicate general settings.
+- Add accessibility labels.
+
+### Assets and audio
+
+- Inventory current assets.
+- Search `cowlsly-web/assets` before adding new assets.
+- Add icons/buttons for categories, random tip, copy, favourites, history, settings, and Account Centre if needed.
+- Add pressed states.
+- Add button sounds.
+- Add warning sounds if needed.
+- Add background music only if appropriate and document default volume.
+- Record missing assets in `WHATS_NEEDED.md`.
+- Record audio in `VOLUME.md`.
+
+### Cleanup and safety
+
+- Use `to-delete/` as the recycle bin.
+- Do not remove source, docs, workflows, or assets without review.
+- Move uncertain cleanup candidates to `to-delete/` with notes.
+
+## Completion rule
+
+Only mark a task complete in `GROKCHECKLIST.md` when this repo actually contains the finished work. Planned, partial, blocked, demo-only, or unverified work is not complete.
